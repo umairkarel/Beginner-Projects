@@ -20,59 +20,59 @@ transX = int(width/2)
 transY = int(height/2)
 
 points = np.array([[-1, -1,  1,  1],
-				   [1 , -1,  1,  1],
-				   [1 ,  1,  1,  1],
-				   [-1,  1,  1,  1],
-				   [-1, -1, -1,  1],
-				   [1 , -1, -1,  1],
-				   [1 ,  1, -1,  1],
-				   [-1,  1, -1,  1],
-				   [-1, -1,  1, -1],
-				   [1 , -1,  1, -1],
-				   [1 ,  1,  1, -1],
-				   [-1,  1,  1, -1],
-				   [-1, -1, -1, -1],
-				   [1 , -1, -1, -1],
-				   [1 ,  1, -1, -1],
-				   [-1,  1, -1, -1]])
+			[1 , -1,  1,  1],
+			[1 ,  1,  1,  1],
+			[-1,  1,  1,  1],
+			[-1, -1, -1,  1],
+			[1 , -1, -1,  1],
+			[1 ,  1, -1,  1],
+			[-1,  1, -1,  1],
+			[-1, -1,  1, -1],
+			[1 , -1,  1, -1],
+			[1 ,  1,  1, -1],
+			[-1,  1,  1, -1],
+			[-1, -1, -1, -1],
+			[1 , -1, -1, -1],
+			[1 ,  1, -1, -1],
+			[-1,  1, -1, -1]])
 
 # Functions
 def draw():
 	global angle
 
 	tesseract_rotation = [[1, 0, 0],
-                          [0, math.cos(-math.pi/2), -math.sin(-math.pi/2)],
-                          [0, math.sin(-math.pi/2), math.cos(-math.pi/2)]]
+            [0, math.cos(-math.pi/2), -math.sin(-math.pi/2)],
+            [0, math.sin(-math.pi/2), math.cos(-math.pi/2)]]
 
 	rotationXY = np.array([[math.cos(angle), -math.sin(angle), 0, 0],
-					      [ math.sin(angle),  math.cos(angle), 0, 0],
-					      [        0       ,          0      , 1, 0],
-					      [        0       ,          0      , 0, 1]])
+			[ math.sin(angle),  math.cos(angle), 0, 0],
+			[0, 0, 1, 0],
+			[0, 0, 0, 1]])
 
 	rotationXZ = np.array([[math.cos(angle), 0, -math.sin(angle),0],
-					      [0,1,0,0],
-					      [math.sin(angle), 0, math.cos(angle),0],
-					      [0,0, 0,1]])
+			[0,1,0,0],
+			[math.sin(angle), 0, math.cos(angle),0],
+			[0,0, 0,1]])
 
 	rotationXW = np.array([[math.cos(angle), 0, 0, -math.sin(angle)],
-                           [0, 1, 0, 0],
-                           [0, 0, 1, 0],
-                           [math.sin(angle), 0, 0, math.cos(angle)]])
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [math.sin(angle), 0, 0, math.cos(angle)]])
 
 	rotationYZ = np.array([[1, 0, 0, 0],
-                           [0, math.cos(angle), -math.sin(angle), 0],
-                           [0, math.sin(angle), math.cos(angle), 0],
-                           [0, 0, 0, 1]])
+            [0, math.cos(angle), -math.sin(angle), 0],
+            [0, math.sin(angle), math.cos(angle), 0],
+            [0, 0, 0, 1]])
 
 	rotationYW = np.array([[1, 0, 0, 0],
-                           [0, math.cos(angle), 0, -math.sin(angle)],
-                           [0, 0, 1, 0],
-                           [0, math.sin(angle), 0, math.cos(angle)]])
+            [0, math.cos(angle), 0, -math.sin(angle)],
+            [0, 0, 1, 0],
+            [0, math.sin(angle), 0, math.cos(angle)]])
 
 	rotationZW = np.array([[1, 0, 0, 0],
-                           [0, 1, 0, 0],
-                           [0, 0, math.cos(angle), -math.sin(angle)],
-                           [0, 0, math.sin(angle), math.cos(angle)]])
+            [0, 1, 0, 0],
+            [0, 0, math.cos(angle), -math.sin(angle)],
+            [0, 0, math.sin(angle), math.cos(angle)]])
 
 	projected = []
 	for point in points:
@@ -82,15 +82,15 @@ def draw():
 		dist = 4
 		w = 1/(dist-rotated3d[3])
 		projection4d = np.array([[w,0,0,0],
-						   	     [0,w,0,0],
-						   	     [0,0,w,0]])
+			[0,w,0,0],
+			[0,0,w,0]])
 
 		projected3d = projection4d@rotated3d
 		rotated2d = tesseract_rotation@projected3d
 		z = 1/(dist - (rotated2d[2]+rotated3d[3]))
 
 		projection2d = np.array([[z,0,0],
-						   	     [0,z,0]])
+			[0,z,0]])
 
 		projected2d = projection2d@rotated2d
 

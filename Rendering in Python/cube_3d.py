@@ -36,16 +36,16 @@ def draw():
 	# 				    [math.sin(angle), math.cos(angle), 0]])
 
 	rotationX = np.array([[1, 0, 0],
-					[0, math.cos(angle), -math.sin(angle)],
-					[0, math.sin(angle), math.cos(angle)]])
+			[0, math.cos(angle), -math.sin(angle)],
+			[0, math.sin(angle), math.cos(angle)]])
 
 	rotationY = np.array([[math.cos(angle), 0, -math.sin(angle)],
-					[0, 1, 0],
-					[math.sin(angle), 0, math.cos(angle)]])
+			[0, 1, 0],
+			[math.sin(angle), 0, math.cos(angle)]])
 
 	rotationZ = np.array([[math.cos(angle), -math.sin(angle), 0],
-					[math.sin(angle), math.cos(angle), 0],
-					[0, 0, 1]])
+			[math.sin(angle), math.cos(angle), 0],
+			[0, 0, 1]])
 
 	projected = []
 	for point in points:
@@ -61,8 +61,8 @@ def draw():
 		z = 1
 
 		projection = np.array([[z,0,0],
-						   	[0,z,0],
-						   	[0,0,0]])
+			[0,z,0],
+			[0,0,0]])
 
 		projected2d = projection@rotated
 
