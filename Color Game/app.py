@@ -8,56 +8,56 @@ score = 0
 timeleft = 30
 
 def startGame(event):
-	if timeleft == 30:
-		timer()
+    if timeleft == 30:
+        timer()
 
-	changeColor()
+    changeColor()
 
 def changeColor():
-	global score
-	global timeleft
+    global score
+    global timeleft
 
-	if timeleft > 0:
-		inputBox.focus_set()
+    if timeleft > 0:
+        inputBox.focus_set()
 
-		if inputBox.get().lower() == colours[0].lower():
-			score += 1
+        if inputBox.get().lower() == colours[0].lower():
+            score += 1
 
-		inputBox.delete(0, tkinter.END)
+        inputBox.delete(0, tkinter.END)
 
-		random.shuffle(colours)
+        random.shuffle(colours)
 
-		colorlabel.config(text=str(colours[1]), fg=str(colours[0]))
+        colorlabel.config(text=str(colours[1]), fg=str(colours[0]))
 
-		scorelabel.config(text="Score: "+str(score))
+        scorelabel.config(text="Score: "+str(score))
 
 def timer():
-	global timeleft
+    global timeleft
 
-	if timeleft > 0:
-		timeleft -= 1
+    if timeleft > 0:
+        timeleft -= 1
 
-		timelabel.config(text="Time left: "+str(timeleft))
+        timelabel.config(text="Time left: "+str(timeleft))
 
-		timelabel.after(1000, timer)
-	else:
-		endgame()
+        timelabel.after(1000, timer)
+    else:
+        endgame()
 
 def endgame():
-	global score
-	global timeleft
+    global score
+    global timeleft
 
-	q = messagebox.askyesno("Play again", "Do you want to play again?") 
+    q = messagebox.askyesno("Play again", "Do you want to play again?") 
 
-	if q:
-		score = 0
-		timeleft = 30
+    if q:
+        score = 0
+        timeleft = 30
 
-		scorelabel.config(text="Press Enter to start\n")
-		timelabel.config(text="Time left: "+str(timeleft))
-		colorlabel.config(text="")
-	else:
-		root.quit()
+        scorelabel.config(text="Press Enter to start\n")
+        timelabel.config(text="Time left: "+str(timeleft))
+        colorlabel.config(text="")
+    else:
+        root.quit()
 
 
 root = tkinter.Tk()
