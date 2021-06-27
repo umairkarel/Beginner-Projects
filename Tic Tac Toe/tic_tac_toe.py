@@ -1,18 +1,20 @@
 import pygame
 from board import Board
+import time
 
 # Color
 white = (255,255,255)
 
 # Const
-width = 450
-height = 450
+width = 400
+height = 400
 screen = pygame.display.set_mode((width,height))
 clock = pygame.time.Clock()
 FPS = 60
 
 board = Board(width, height, screen)
 running = True
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -24,8 +26,10 @@ while running:
 
         if event.type == pygame.MOUSEBUTTONDOWN and not(board.win):
             pos = pygame.mouse.get_pos()
-            
-            if board.place(pos):
+            placed = board.place(pos)
+            isWin = board.check_win()
+
+            if placed and not isWin :
                 board.computer_move()
 
     board.draw()

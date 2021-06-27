@@ -10,6 +10,7 @@ class Board:
         self.rows = 3
         self.cols = 3
         self.model = [[' ' for i in range(3)] for j in range(3)]
+        #  [['X', 'Y', 'Z'], ['A', 'B', 'C'], ['E', 'F', 'G']]
         self.width = width
         self.height = height
         self.player = 'X'
@@ -28,7 +29,7 @@ class Board:
         for x in range(self.rows):
             for y in range(self.cols):
                 text = fnt.render(str(self.model[x][y]), 1, (0, 0, 0))
-                self.screen.blit(text, (text_pos*y + (gap/2 - text.get_width()/2), text_pos*x + (gap/2 - text.get_height()/2)))
+                self.screen.blit(text, (y*gap + (gap/2 - text.get_width()/2), x*gap + (gap/2 - text.get_height()/2)))
 
         if self.win:
             self.draw_winline()
