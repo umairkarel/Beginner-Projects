@@ -1,3 +1,9 @@
+""" 
+    Created on Sat May 6 2021
+
+    @author: umairkarel
+"""
+
 import pygame
 pygame.font.init()
 fnt = pygame.font.SysFont("comicsans", 60)

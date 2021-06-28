@@ -1,3 +1,9 @@
+""" 
+    Created on Sat May 6 2021
+
+    @author: umairkarel
+"""
+
 import pygame
 from board import Board
 import time
